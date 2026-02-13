@@ -124,16 +124,12 @@
           intelligent guidance powered by AI.
         </p>
       </div>
-      <form action="/waitlist" method="POST">
-        <input type="email" name="email" placeholder="enter your email" required>
-        <button type="submit">Join Waitlist</button></form>
       <div class="waitlist-box">
         <h3>Join the Waitlist</h3>
         <p>Be the first to access SPsolutions when we launch.</p>
-
-        <input type="email" name="email" placeholder="Your email address" required>
-        <button onclick="joinWaitlist()">Join Waitlist</button>
-
+      <form action="/waitlist" method="POST">
+        <input type="email" name="email" placeholder="enter your email" required>
+        <button type="submit">Join Waitlist</button></form>
         <div id="msg"></div>
       </div>
     </section>
@@ -161,3 +157,4 @@ async function joinWaitlist() {
 </script>
 </body>
 </html>
+
