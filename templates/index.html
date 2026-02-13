@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SPsolutions – AI Business Advisor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #c9ced8;
+      color: #0b1c2d;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 44px;
+      font-weight: 700;
+      color: #0b1c2d;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 80px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #44556b;
+      margin-bottom: 30px;
+    }
+
+    .waitlist-box {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .waitlist-box h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .waitlist-box p {
+      font-size: 14px;
+      color: #66788a;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccd4df;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background-color: #0b1c2d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #143252;
+    }
+
+    #msg {
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo">SPsolutions</div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>AI Business Advisor<br>for Students & Founders</h1>
+        <p>
+          SPsolutions helps you turn ideas into execution with structured,
+          intelligent guidance powered by AI.
+        </p>
+      </div>
+      <form action="/waitlist" method="POST">
+        <input type="email" name="email" placeholder="enter your email" required>
+        <button type="submit">Join Waitlist</button></form>
+      <div class="waitlist-box">
+        <h3>Join the Waitlist</h3>
+        <p>Be the first to access SPsolutions when we launch.</p>
+
+        <input type="email" name="email" placeholder="Your email address" required>
+        <button onclick="joinWaitlist()">Join Waitlist</button>
+
+        <div id="msg"></div>
+      </div>
+    </section>
+  </div>
+  <script>
+async function joinWaitlist() {
+    const email = document.getElementById("email").value;
+
+    const response = await fetch("/waitlist", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        alert("Successfully joined waitlist!");
+    } else {
+        alert("Something went wrong.");
+    }
+}
+</script>
+</body>
+</html>
